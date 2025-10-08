@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Questions Form</title>
+  <style>
+    /* (your same styles — kept concise here) */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f0ff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .dashboard-card {
+      background-color: white;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      padding: 30px;
+      width: 100%;
+      max-width: 550px;
+    }
+    .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; padding-bottom:15px; border-bottom:1px solid #f0f0f0; }
+    .profile-area { display:flex; align-items:center; }
+    .profile-image { width:50px; height:50px; border-radius:50%; background: radial-gradient(circle,#00c6ff,#0072ff); margin-right:15px; display:flex; justify-content:center; align-items:center; color:white; font-size:1.6em; box-shadow:0 3px 10px rgba(0,0,0,0.2); }
+    .title-text { font-size:1.2em; font-weight:bold; color:#333; }
+    .logout-button { background:none; border:none; color:#333; font-size:0.9em; cursor:pointer; font-weight:500; opacity:0.8; }
+    .form-group { margin-bottom:20px; }
+    .input-field { width:100%; padding:12px 15px; border:1px solid #e0e0e0; border-radius:10px; font-size:1em; background:#f9f9f9; box-shadow: inset 2px 2px 4px #e8e8e8, inset -2px -2px 4px #fff; transition:all 0.2s; }
+    .input-field:focus { border-color:#b0c4de; background:#fff; outline: none; }
+    .options-section { margin-top:30px; }
+    .options-title { font-size:1.1em; font-weight:bold; color:#333; margin-bottom:15px; }
+    .save-button-container { text-align:center; margin-top:35px; }
+    .save-button { padding:12px 30px; border:none; border-radius:25px; font-size:1.1em; font-weight:bold; cursor:pointer; color:#fff; background:linear-gradient(135deg,#ffc0cb,#dda0dd); box-shadow:0 5px 15px rgba(221,160,221,0.6); transition:all 0.2s; }
+    .save-button:hover { opacity:0.9; transform: translateY(-2px); box-shadow:0 7px 20px rgba(221,160,221,0.8); }
+  </style>
+</head>
+<body>
+  <div class="page-background">
+    <div class="dashboard-card">
+      <div class="card-header">
+        <div class="profile-area">
+          <div class="profile-image">?</div>
+          <div class="title-text">Create Questions</div>
+        </div>
+        <button class="logout-button">Logout</button>
+      </div>
+
+      <div class="form-group">
+        <input type="text" placeholder="Enter the question" class="input-field" id="question-input">
+      </div>
+
+      <div class="options-section">
+        <div class="options-title">Options</div>
+        <div class="form-group">
+          <input type="text" placeholder="Option 1" class="input-field" id="option1">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Option 2" class="input-field" id="option2">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Option 3" class="input-field" id="option3">
+        </div>
+      </div>
+
+      <div class="save-button-container">
+        <button class="save-button" id="saveBtn">Save Question</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Change this if your backend runs on another host/port
+    const API_URL = "http://127.0.0.1:5000/questions";
+
+    document.getElementById("saveBtn").addEventListener("click", async function () {
+      const question = document.getElementById("question-input").value.trim();
+      const option1 = document.getElementById("option1").value.trim();
+      const option2 = document.getElementById("option2").value.trim();
+      const option3 = document.getElementById("option3").value.trim();
+
+      if (!question || !option1 || !option2 || !option3) {
+        alert("⚠️ Please fill all fields!");
+        return;
+      }
+
+      const questionData = {
+        question: question,
+        options: [option1, option2, option3]
+      };
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(questionData)
+        });
+
+        // If backend returned non-2xx, show helpful error
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`Server responded ${res.status} ${res.statusText}: ${text}`);
+        }
+
+        // Parse JSON response (make sure your backend returns JSON)
+        const data = await res.json();
+        // `data.id` is common; fallback to message if no id provided
+        const id = data.id || data._id || "N/A";
+        alert("✅ Question Saved!\n\nID: " + id);
+
+        // Clear inputs
+        document.getElementById("question-input").value = "";
+        document.getElementById("option1").value = "";
+        document.getElementById("option2").value = "";
+        document.getElementById("option3").value = "";
+
+      } catch (err) {
+        console.error("Error:", err);
+        alert("❌ Error saving question:\n" + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

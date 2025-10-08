@@ -1,0 +1,25 @@
+[
+    {
+        "fname": "John",
+        "lname": "Doe",
+        "email": "john@example.com",
+        "password": "1234",
+        "role": "teacher"
+    },
+    {
+        "fname": "sahana",
+        "lname": "B",
+        "phone": "98765431",
+        "role": "student",
+        "email": "sahana1@gmail.com",
+        "password": "sahana@1"
+    },
+    {
+        "fname": "poorvika",
+        "lname": "pb",
+        "phone": "7676174594",
+        "role": "teacher",
+        "email": "poorvi2@gmail.com",
+        "password": "poorvi@2"
+    }
+]

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard</title>
+<style>
+body {font-family: Arial,sans-serif;margin:0;background-color:#f0f0ff;display:flex;justify-content:center;align-items:flex-start;padding:40px 20px;min-height:100vh;}
+.dashboard-card {background-color:white;border-radius:30px;box-shadow:0 10px 30px rgba(0,0,0,0.15);padding:30px;width:100%;max-width:600px;}
+.header-box {display:flex;justify-content:space-between;align-items:center;border:1px solid #e0e0e0;border-radius:10px;padding:10px 15px;margin-bottom:30px;font-size:1.1em;font-weight:500;color:#333;}
+.logout-button {background:none;border:none;color:#333;font-size:0.9em;cursor:pointer;font-weight:500;opacity:0.8;}
+.action-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.action-card {background-color:white;border-radius:15px;padding:25px;text-align:center;box-shadow:5px 5px 10px #e0e0e0,-5px -5px 10px #ffffff;transition:all 0.2s ease-in-out;cursor:pointer;text-decoration:none;color:#555;}
+.action-card:hover {box-shadow:8px 8px 15px #d0d0d0,-8px -8px 15px #ffffff;transform:translateY(-2px);color:#555;}
+.icon-box {display:flex;justify-content:center;align-items:center;width:80px;height:80px;margin:0 auto 15px;border-radius:10px;background-color:#f0f0ff;color:#5d3dff;font-size:40px;box-shadow: inset 3px 3px 5px #e0e0e0, inset -3px -3px 5px #ffffff;}
+.card-text {font-weight:600;font-size:1em;}
+.action-grid > *:nth-child(3){grid-column:span 2;width:50%;margin:0 auto;}
+@media(max-width:650px){.action-grid{grid-template-columns:1fr;}.action-grid > *:nth-child(3){grid-column:span 1;width:100%;margin:0;}}
+</style>
+</head>
+<body>
+<div class="dashboard-card">
+    <div class="header-box">
+        <span>Teacher Dashboard</span>
+        <button class="logout-button" id="logoutBtn">Logout</button>
+    </div>
+       
+<script src="js/auth.js"></script>
+
+    <div class="action-grid">
+        <a href="createquestion.html" class="action-card">
+    <div class="icon-box">≡</div>
+    <div class="card-text">Create Questions</div>
+</a>
+
+        <a href="validateAns.html" class="action-card">
+            <div class="icon-box">✓</div>
+            <div class="card-text">Validate Answer</div>
+        </a>
+        <a href="publishresult.html" class="action-card">
+            <div class="icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#5d3dff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+            </div>
+            <div class="card-text">Publish Results</div>
+        </a>
+    </div>
+</div>
+
+<script>
+document.getElementById('logoutBtn').addEventListener('click',()=>{window.location.href='login.html';});
+</script>
+</body>
+</html>

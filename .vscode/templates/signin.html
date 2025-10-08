@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign In / Register</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .signin-container {
+      background: white;
+      border-radius: 40px;
+      padding: 60px 50px;
+      width: 500px;
+      text-align: center;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    }
+
+    .signin-container h2 {
+      font-size: 36px;
+      color: #6a0dad;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 2px solid #e0b0ff;
+      font-size: 17px;
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff6a00, #ee0979);
+      padding: 16px;
+      width: 100%;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signin-container">
+    <h2>Sign In / Register</h2>
+    <script src="js/auth.js"></script>
+
+    <form id="signupForm">
+  <input type="text" id="fname" placeholder="First Name" required>
+  <input type="text" id="lname" placeholder="Last Name" required>
+  <input type="text" id="phone" placeholder="Phone" required>
+  <select id="role" required>
+    <option value="">Select Role</option>
+    <option value="student">Student</option>
+    <option value="teacher">Teacher</option>
+    <option value="admin">Admin</option>
+  </select>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <button type="submit">Register</button>
+</form>
+<p>Already have an account? <a href="login.html">Login</a></p>
+
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const data = {
+    fname: document.getElementById('fname').value,
+    lname: document.getElementById('lname').value,
+    phone: document.getElementById('phone').value,
+    role: document.getElementById('role').value,
+    email: document.getElementById('email').value,
+    password: document.getElementById('password').value
+  };
+
+  const response = await fetch('http://127.0.0.1:5000/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+
+  const result = await response.json();
+  alert(result.message);
+
+  if (result.success) {
+    window.location.href = 'login.html'; // Redirect to login after registration
+  }
+});
+</script>
+</div>
+</body>
+</html>

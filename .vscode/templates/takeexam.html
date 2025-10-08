@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take Exam</title>
+<style>
+    body {font-family: Arial, sans-serif; background-color:#f0f0ff; margin:0; display:flex; justify-content:center; align-items:center; min-height:100vh;}
+    .container {background:white; border-radius:25px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:30px; width:90%; max-width:600px;}
+    h2 {text-align:center; color:#5d3dff; margin-bottom:20px;}
+    .question {margin-bottom:20px;}
+    .options label {display:block; margin:8px 0;}
+    button {background-color:#5d3dff; color:white; border:none; border-radius:10px; padding:10px 20px; cursor:pointer; font-weight:600;}
+    button:hover {background-color:#4a2fff;}
+    .back-btn {background-color:#ddd; color:#333; margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Take Exam</h2>
+
+    <div class="question">
+        <p><strong>Q1:</strong> HTML stands for?</p>
+        <div class="options">
+            <label><input type="radio" name="q1" value="Hyper Text Markup Language"> Hyper Text Markup Language</label>
+            <label><input type="radio" name="q1" value="High Text Machine Language"> High Text Machine Language</label>
+            <label><input type="radio" name="q1" value="Hyperlinks Text Management Language"> Hyperlinks Text Management Language</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>Q2:</strong> Which tag is used for inserting the largest heading in HTML?</p>
+        <div class="options">
+            <label><input type="radio" name="q2" value="<h1>"> &lt;h1&gt;</label>
+            <label><input type="radio" name="q2" value="<h6>"> &lt;h6&gt;</label>
+            <label><input type="radio" name="q2" value="<head>"> &lt;head&gt;</label>
+        </div>
+    </div>
+
+    <button id="submitBtn">Submit</button>
+    <button class="back-btn" onclick="location.href='studentdashboard.html'">Back to Dashboard</button>
+</div>
+
+<!-- ✅ Place script at the end of body -->
+<script>
+document.getElementById("submitBtn").addEventListener("click", function() {
+    let score = 0;
+
+    // correct answers
+    const correctAnswers = {
+        q1: "Hyper Text Markup Language",
+        q2: "<h1>"
+    };
+
+    for (let q in correctAnswers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === correctAnswers[q]) {
+            score++;
+        }
+    }
+
+    alert("✅ You scored " + score + " / " + Object.keys(correctAnswers).length);
+});
+</script>
+</body>
+</html>

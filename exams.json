@@ -1,0 +1,73 @@
+[
+    {
+        "id": 1,
+        "title": "Python Basics",
+        "description": "Test your Python fundamentals",
+        "duration": 30,
+        "questions": [
+            {
+                "id": 1,
+                "question": "What is Python?",
+                "options": [
+                    "A snake",
+                    "A programming language",
+                    "A game",
+                    "A software"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 2,
+                "question": "Which keyword is used to define a function?",
+                "options": [
+                    "func",
+                    "function",
+                    "def",
+                    "define"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 3,
+                "question": "What is the output of print(2 ** 3)?",
+                "options": [
+                    "5",
+                    "6",
+                    "8",
+                    "9"
+                ],
+                "correct": 2
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "JavaScript Fundamentals",
+        "description": "Basic JavaScript concepts",
+        "duration": 25,
+        "questions": [
+            {
+                "id": 1,
+                "question": "Which company developed JavaScript?",
+                "options": [
+                    "Microsoft",
+                    "Netscape",
+                    "Google",
+                    "Apple"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 2,
+                "question": "What does 'let' keyword do?",
+                "options": [
+                    "Defines a constant",
+                    "Declares a variable",
+                    "Creates a function",
+                    "Imports a module"
+                ],
+                "correct": 1
+            }
+        ]
+    }
+]

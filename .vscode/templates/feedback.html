@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback</title>
+<style>
+    body {font-family: Arial, sans-serif; background-color:#f0f0ff; margin:0; display:flex; justify-content:center; align-items:center; min-height:100vh;}
+    .container {background:white; border-radius:25px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:30px; width:90%; max-width:600px;}
+    h2 {text-align:center; color:#5d3dff; margin-bottom:20px;}
+    textarea {width:100%; height:120px; border-radius:10px; border:1px solid #ccc; padding:10px; font-size:1em; resize:none;}
+    button {margin-top:15px; background-color:#5d3dff; color:white; border:none; border-radius:10px; padding:10px 20px; cursor:pointer; font-weight:600;}
+    button:hover {background-color:#4a2fff;}
+    .back-btn {background-color:#ddd; color:#333; margin-top:15px;}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Feedback Form</h2>
+    <textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea><br>
+    <button id="submitBtn">Submit</button>
+    <button class="back-btn" onclick="location.href='studentdashboard.html'">Back to Dashboard</button>
+</div>
+
+<script>
+    // Get Submit button
+    const submitBtn = document.getElementById("submitBtn");
+    const feedbackText = document.getElementById("feedbackText");
+
+    submitBtn.addEventListener("click", function() {
+        const feedback = feedbackText.value.trim();
+
+        if(feedback === "") {
+            alert("⚠️ Please enter your feedback before submitting.");
+            return;
+        }
+
+        // Here you could send the feedback to backend using fetch()
+        // For now we just show a confirmation alert
+        alert("✅ Thank you for your feedback!");
+
+        // Clear the textarea
+        feedbackText.value = "";
+    });
+</script>
+</body>
+</html>
